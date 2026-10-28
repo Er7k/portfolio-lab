@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Erik Sjöberg Portfolio</title>
+
+    <meta name="description" content="Personal portfolio website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+
+  <body id="top">
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a href="#top" class="profile-name">Erik Sjöberg</a>
+        <div class="nav-links">
+          <a href="#top">About</a>
+          <a href="#interests">Interests</a>
+          <a href="#projects">Projects</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="intro container">
+        <div class="intro-text">
+          <h1>Erik Sjöberg - Software Development student.</h1>
+          <p>
+            Currently studying a Javascript course!
+          </p>
+        </div>
+
+        <div class="intro-image">
+          <img
+            src="IMG_1809.PNG"
+            alt="Portrait photo of me smiling outdoors"
+          />
+        </div>
+      </section>
+
+      <section id="about" class="container section">
+
+        <h2>About Me</h2>
+
+        <article>
+          <h3>Biography</h3>
+          <p>
+            I have always been interested in computers and technology, especially video games. 
+            It was a natural decision for me to pursue a career in software development of some kind.
+            I am currently studying a Javascript course to improve my skills and knowledge with HTML, CSS and Javascript.
+          </p>
+        </article>
+
+      </section>
+
+      <section id="interests" class="section alt-section">
+
+        <div class="container">
+
+          <h2>Interests and Hobbies</h2>
+
+          <div class="about-grid">
+            <article>
+              <h3>Academic Interests</h3>
+              <p>
+                I prefer working with front-end development since i am more interested in the design and user experience side of software development. 
+                However i have experience with coding in Java that has consisted of making smaller applications and websites.
+              </p>
+            </article>
+
+            <article>
+              <h3>Hobbies</h3>
+              <p>
+                I spend alot of my free time in front of the computer, learning new things, playing video games and talking to friends.
+                Another big part of my life is going to the gym and working out.
+              </p>
+            </article>
+
+            <article>
+              <h3>Future Goals</h3>
+              <p>
+                I want to keep learning and improving my skills as a developer, right now im focusing on learning more about python and Javascript. 
+                I would like to work with front-end development in the future, but i am also open to other opportunities as a back-end or full-stack developer.
+                I am also interested in potentially making my own games at some point as an indie-developer.
+              </p>
+            </article>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section id="projects" class="container section">
+
+        <h2>Projects</h2>
+
+        <div class="project-grid">
+          <article class="card project-card">
+            <h3>Personal Calendar Website</h3>
+            <p>
+              One of my first group projects was creating a personal calendar website to help in organizing events and tasks. The project was made with HTML, CSS and Javascript with postgreSQL and Java.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <h3>Hitster-type Game</h3>
+            <p>
+              Another group project was creating a game where the player has to guess the names of songs and artists, aswell as the release datesand place them correctly on a timeline. This project was also made with HTML, CSS and Javascript with the help of a backend API integrated with python.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <h3>Plant Tracking App</h3>
+            <p>
+              Refactored and rebuilt a plant tracking app that was originally made in Java. The app allows the user to keep track of their plants and their watering schedule. The project was remade using HTML, CSS and Javascript with a local database to store the data.
+            </p>
+          </article>
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer id="contact" class="site-footer">
+
+      <div class="container footer-wrap">
+
+        <div>
+          <h2>Contact Me</h2>
+        </div>
+
+        <form class="contact-form" action="mailto:ejkan_98@hotmail.com" method="post" enctype="text/plain">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" placeholder="Your email" required />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="4" placeholder="Write your message" required></textarea>
+          </label>
+
+          <button type="submit" class="button">Send message</button>
+        </form>
+
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 Erik Sjöberg</p>
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="mailto:ejkan_98@hotmail.com">ejkan_98@hotmail.com</a>
+        </div>
+      </div>
+
+    </footer>
+
+  </body>
+
+</html>
