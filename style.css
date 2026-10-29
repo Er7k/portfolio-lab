@@ -294,15 +294,22 @@ article:hover,
 
 .feedback-page {
   flex: 1;
-  padding: 64px 0 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
 }
 
 .feedback-page h1 {
+  width: 100%;
   margin: 0 0 10px;
   color: var(--navy-dark);
+  text-align: center;
 }
 
 .feedback-form {
+  width: 100%;
   max-width: 720px;
   margin-top: 24px;
 }
