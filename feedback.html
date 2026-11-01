@@ -45,12 +45,13 @@
 
         <label for="email">
           Email
-          <input id="email" type="email" name="email" autocomplete="email" required />
+          <input id="email" type="email" name="email" autocomplete="email" aria-describedby="email-error" required />
+          <span id="email-error" class="field-error" aria-live="polite" hidden></span>
         </label>
 
         <label for="topic">
           Topic of interest
-          <select id="topic" name="topic" required>
+          <select id="topic" name="topic" aria-describedby="topic-error" required>
             <option value="" selected disabled>Select a topic</option>
             <option value="design">Design and layout</option>
             <option value="content">Content and writing</option>
@@ -58,16 +59,19 @@
             <option value="accessibility">Accessibility</option>
             <option value="other">Other</option>
           </select>
+          <span id="topic-error" class="field-error" aria-live="polite" hidden></span>
         </label>
 
         <label for="comments">
           Comments
-          <textarea id="comments" name="comments" rows="6" required></textarea>
+          <textarea id="comments" name="comments" rows="6" aria-describedby="comments-error" required></textarea>
+          <span id="comments-error" class="field-error" aria-live="polite" hidden></span>
         </label>
 
         <label for="website">
           Website URL (optional)
-          <input id="website" type="url" name="website" placeholder="https://example.com" />
+          <input id="website" type="url" name="website" placeholder="https://example.com" aria-describedby="website-error" />
+          <span id="website-error" class="field-error" aria-live="polite" hidden></span>
         </label>
 
         <div class="feedback-actions">
