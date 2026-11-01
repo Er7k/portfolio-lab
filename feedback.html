@@ -39,7 +39,8 @@
 
         <label for="full-name">
           Full name
-          <input id="full-name" type="text" name="name" autocomplete="name" required />
+          <input id="full-name" type="text" name="name" autocomplete="name" aria-describedby="full-name-error" required />
+          <span id="full-name-error" class="field-error" aria-live="polite" hidden></span>
         </label>
 
         <label for="email">

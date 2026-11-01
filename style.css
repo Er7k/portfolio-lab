@@ -238,6 +238,12 @@ article:hover,
   color: var(--navy-dark);
 }
 
+.field-error {
+  color: #b42318;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
