@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <script src="feedback.js" defer></script>
 
   </head>
 
@@ -68,7 +69,10 @@
           <input id="website" type="url" name="website" placeholder="https://example.com" />
         </label>
 
-        <button type="button" class="button">Send feedback</button>
+        <div class="feedback-actions">
+          <button id="send-feedback" type="button" class="button">Send feedback</button>
+          <button id="clear-feedback" type="reset" class="button">Clear</button>
+        </div>
 
       </form>
 
