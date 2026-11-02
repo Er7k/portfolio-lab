@@ -35,7 +35,7 @@
 
       <h1>Share your feedback</h1>
 
-      <form class="contact-form feedback-form">
+      <form class="contact-form feedback-form" novalidate>
 
         <label for="full-name">
           Full name
@@ -76,9 +76,11 @@
         </label>
 
         <div class="feedback-actions">
-          <button id="send-feedback" type="button" class="button">Send feedback</button>
+          <button id="send-feedback" type="submit" class="button">Send feedback</button>
           <button id="clear-feedback" type="reset" class="button">Clear</button>
         </div>
+
+        <p id="feedback-status" class="feedback-status" role="status" aria-live="polite" hidden></p>
 
       </form>
 

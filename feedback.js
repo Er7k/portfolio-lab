@@ -10,10 +10,10 @@ const commentsError = document.getElementById("comments-error");
 const commentsCount = document.getElementById("comments-count");
 const websiteInput = document.getElementById("website");
 const websiteError = document.getElementById("website-error");
-const sendFeedbackButton = document.getElementById("send-feedback");
-const clearFeedbackButton = document.getElementById("clear-feedback");
+const feedbackStatus = document.getElementById("feedback-status");
 const minimumCommentLength = 15;
 const maximumCommentLength = 500;
+let feedbackStatusTimeout;
 
 function showFieldError(input, errorElement, message) {
   errorElement.textContent = message;
@@ -127,6 +127,7 @@ function validateForm() {
   const firstInvalidField = fieldResults.find(([, isValid]) => !isValid);
 
   if (firstInvalidField) firstInvalidField[0].focus();
+  return !firstInvalidField;
 }
 
 function validateWhenErrorIsVisible(input, errorElement, validator) {
@@ -139,6 +140,9 @@ function validateWhenErrorIsVisible(input, errorElement, validator) {
 }
 
 function resetForm() {
+  window.clearTimeout(feedbackStatusTimeout);
+  feedbackStatus.textContent = "";
+  feedbackStatus.hidden = true;
   clearFieldError(fullNameInput, fullNameError);
   clearFieldError(emailInput, emailError);
   clearFieldError(topicSelect, topicError);
@@ -147,7 +151,21 @@ function resetForm() {
   updateCommentCount("");
 }
 
-sendFeedbackButton.addEventListener("click", validateForm);
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  if (!validateForm()) return;
+
+  const fullName = fullNameInput.value.trim();
+  feedbackForm.reset();
+  feedbackStatus.textContent = `Thanks for your feedback, ${fullName}!`;
+  feedbackStatus.hidden = false;
+  feedbackStatusTimeout = window.setTimeout(() => {
+    feedbackStatus.textContent = "";
+    feedbackStatus.hidden = true;
+  }, 4000);
+}
+
 validateWhenErrorIsVisible(fullNameInput, fullNameError, validateFullName);
 validateWhenErrorIsVisible(emailInput, emailError, validateEmail);
 validateWhenErrorIsVisible(topicSelect, topicError, validateTopic);
@@ -157,5 +175,6 @@ commentsInput.addEventListener("input", () => {
   if (commentsInput.hasAttribute("data-validated")) validateComments();
 });
 feedbackForm.addEventListener("reset", resetForm);
+feedbackForm.addEventListener("submit", handleFormSubmit);
 
 updateCommentCount();
