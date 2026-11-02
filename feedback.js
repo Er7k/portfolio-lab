@@ -16,12 +16,19 @@ function showFieldError(input, errorElement, message) {
   errorElement.textContent = message;
   errorElement.hidden = false;
   input.setAttribute("aria-invalid", "true");
+  input.setAttribute("data-validated", "true");
 }
 
 function clearFieldError(input, errorElement) {
   errorElement.textContent = "";
   errorElement.hidden = true;
   input.removeAttribute("aria-invalid");
+  input.removeAttribute("data-validated");
+}
+
+function markFieldValid(input) {
+  input.setAttribute("aria-invalid", "false");
+  input.setAttribute("data-validated", "true");
 }
 
 function validateFullName() {
@@ -31,6 +38,7 @@ function validateFullName() {
   }
 
   clearFieldError(fullNameInput, fullNameError);
+  markFieldValid(fullNameInput);
   return true;
 }
 
@@ -45,6 +53,7 @@ function validateEmail() {
   }
 
   clearFieldError(emailInput, emailError);
+  markFieldValid(emailInput);
   return true;
 }
 
@@ -55,6 +64,7 @@ function validateTopic() {
   }
 
   clearFieldError(topicSelect, topicError);
+  markFieldValid(topicSelect);
   return true;
 }
 
@@ -65,6 +75,7 @@ function validateComments() {
   }
 
   clearFieldError(commentsInput, commentsError);
+  markFieldValid(commentsInput);
   return true;
 }
 
@@ -75,6 +86,11 @@ function validateWebsite() {
   }
 
   clearFieldError(websiteInput, websiteError);
+  if (websiteInput.value.trim()) {
+    markFieldValid(websiteInput);
+  } else {
+    websiteInput.setAttribute("data-validated", "true");
+  }
   return true;
 }
 
@@ -93,7 +109,7 @@ function validateForm() {
 
 function validateWhenErrorIsVisible(input, errorElement, validator) {
   const updateError = () => {
-    if (!errorElement.hidden) validator();
+    if (input.hasAttribute("data-validated")) validator();
   };
 
   input.addEventListener("input", updateError);
