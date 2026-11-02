@@ -7,10 +7,13 @@ const topicSelect = document.getElementById("topic");
 const topicError = document.getElementById("topic-error");
 const commentsInput = document.getElementById("comments");
 const commentsError = document.getElementById("comments-error");
+const commentsCount = document.getElementById("comments-count");
 const websiteInput = document.getElementById("website");
 const websiteError = document.getElementById("website-error");
 const sendFeedbackButton = document.getElementById("send-feedback");
 const clearFeedbackButton = document.getElementById("clear-feedback");
+const minimumCommentLength = 15;
+const maximumCommentLength = 500;
 
 function showFieldError(input, errorElement, message) {
   errorElement.textContent = message;
@@ -69,14 +72,33 @@ function validateTopic() {
 }
 
 function validateComments() {
-  if (!commentsInput.value.trim()) {
-    showFieldError(commentsInput, commentsError, "Please enter your comments.");
+  const characterCount = commentsInput.value.trim().length;
+
+  if (characterCount < minimumCommentLength) {
+    showFieldError(
+      commentsInput,
+      commentsError,
+      `Please enter at least ${minimumCommentLength} characters.`
+    );
     return false;
   }
 
   clearFieldError(commentsInput, commentsError);
   markFieldValid(commentsInput);
   return true;
+}
+
+function updateCommentCount(comments = commentsInput.value) {
+  const characterCount = comments.length;
+  const isTooShort = comments.trim().length < minimumCommentLength;
+
+  commentsCount.textContent = `${characterCount}/${maximumCommentLength}`;
+  commentsCount.setAttribute(
+    "aria-label",
+    `${characterCount} of ${maximumCommentLength} characters; minimum ${minimumCommentLength} characters`
+  );
+  commentsCount.classList.toggle("is-too-short", isTooShort);
+  commentsCount.classList.toggle("is-valid", !isTooShort);
 }
 
 function validateWebsite() {
@@ -122,12 +144,18 @@ function resetForm() {
   clearFieldError(topicSelect, topicError);
   clearFieldError(commentsInput, commentsError);
   clearFieldError(websiteInput, websiteError);
+  updateCommentCount("");
 }
 
 sendFeedbackButton.addEventListener("click", validateForm);
 validateWhenErrorIsVisible(fullNameInput, fullNameError, validateFullName);
 validateWhenErrorIsVisible(emailInput, emailError, validateEmail);
 validateWhenErrorIsVisible(topicSelect, topicError, validateTopic);
-validateWhenErrorIsVisible(commentsInput, commentsError, validateComments);
 validateWhenErrorIsVisible(websiteInput, websiteError, validateWebsite);
+commentsInput.addEventListener("input", () => {
+  updateCommentCount();
+  if (commentsInput.hasAttribute("data-validated")) validateComments();
+});
 feedbackForm.addEventListener("reset", resetForm);
+
+updateCommentCount();

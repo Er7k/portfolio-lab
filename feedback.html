@@ -64,7 +64,8 @@
 
         <label for="comments">
           Comments
-          <textarea id="comments" name="comments" rows="6" aria-describedby="comments-error" required></textarea>
+          <textarea id="comments" name="comments" rows="6" maxlength="500" aria-describedby="comments-count comments-error" required></textarea>
+          <span id="comments-count" class="comment-count is-too-short" aria-label="0 of 500 characters; minimum 15 characters" aria-live="polite">0/500</span>
           <span id="comments-error" class="field-error" aria-live="polite" hidden></span>
         </label>
 
