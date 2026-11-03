@@ -130,7 +130,7 @@ function validateForm() {
   return !firstInvalidField;
 }
 
-function validateWhenErrorIsVisible(input, errorElement, validator) {
+function validateWhenErrorIsVisible(input, validator) {
   const updateError = () => {
     if (input.hasAttribute("data-validated")) validator();
   };
@@ -166,10 +166,10 @@ function handleFormSubmit(event) {
   }, 4000);
 }
 
-validateWhenErrorIsVisible(fullNameInput, fullNameError, validateFullName);
-validateWhenErrorIsVisible(emailInput, emailError, validateEmail);
-validateWhenErrorIsVisible(topicSelect, topicError, validateTopic);
-validateWhenErrorIsVisible(websiteInput, websiteError, validateWebsite);
+validateWhenErrorIsVisible(fullNameInput, validateFullName);
+validateWhenErrorIsVisible(emailInput, validateEmail);
+validateWhenErrorIsVisible(topicSelect, validateTopic);
+validateWhenErrorIsVisible(websiteInput, validateWebsite);
 commentsInput.addEventListener("input", () => {
   updateCommentCount();
   if (commentsInput.hasAttribute("data-validated")) validateComments();
