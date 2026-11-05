@@ -15,6 +15,8 @@ const minimumCommentLength = 15;
 const maximumCommentLength = 500;
 let feedbackStatusTimeout;
 
+commentsInput.maxLength = maximumCommentLength;
+
 function showFieldError(input, errorElement, message) {
   errorElement.textContent = message;
   errorElement.hidden = false;
@@ -74,6 +76,15 @@ function validateTopic() {
 function validateComments() {
   const characterCount = commentsInput.value.trim().length;
 
+  if (commentsInput.value.length > maximumCommentLength) {
+    showFieldError(
+      commentsInput,
+      commentsError,
+      `Please enter no more than ${maximumCommentLength} characters.`
+    );
+    return false;
+  }
+
   if (characterCount < minimumCommentLength) {
     showFieldError(
       commentsInput,
@@ -91,6 +102,7 @@ function validateComments() {
 function updateCommentCount(comments = commentsInput.value) {
   const characterCount = comments.length;
   const isTooShort = comments.trim().length < minimumCommentLength;
+  const isWithinLimit = characterCount <= maximumCommentLength;
 
   commentsCount.textContent = `${characterCount}/${maximumCommentLength}`;
   commentsCount.setAttribute(
@@ -98,7 +110,7 @@ function updateCommentCount(comments = commentsInput.value) {
     `${characterCount} of ${maximumCommentLength} characters; minimum ${minimumCommentLength} characters`
   );
   commentsCount.classList.toggle("is-too-short", isTooShort);
-  commentsCount.classList.toggle("is-valid", !isTooShort);
+  commentsCount.classList.toggle("is-valid", !isTooShort && isWithinLimit);
 }
 
 function validateWebsite() {
@@ -171,6 +183,9 @@ validateWhenErrorIsVisible(emailInput, validateEmail);
 validateWhenErrorIsVisible(topicSelect, validateTopic);
 validateWhenErrorIsVisible(websiteInput, validateWebsite);
 commentsInput.addEventListener("input", () => {
+  if (commentsInput.value.length > maximumCommentLength) {
+    commentsInput.value = commentsInput.value.slice(0, maximumCommentLength);
+  }
   updateCommentCount();
   if (commentsInput.hasAttribute("data-validated")) validateComments();
 });
